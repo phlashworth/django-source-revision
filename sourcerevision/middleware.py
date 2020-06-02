@@ -1,10 +1,11 @@
 from django.conf import settings
+from django.utils.deprecation import MiddlewareMixin
 from .loader import get_revision
 
 __all__ = ['get_revision']
 
 
-class RevisionMiddleware(object):
+class RevisionMiddleware(MiddlewareMixin):
 
     def __init__(self):
         self.header = getattr(settings, 'SOURCE_REVISION_HEADER',
